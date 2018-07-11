@@ -26,4 +26,3 @@ class UserManager(UserManager):
 
             return self._create_user (phone_number, password, **extra_fields)
 
-        

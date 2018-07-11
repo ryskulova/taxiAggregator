@@ -12,4 +12,4 @@ urlpatterns = [
     url(r'^verify/$', PhoneVerificationView, name="phone_verification_url"),
     url(r'^dashboard/$', DashboardView.as_view(), name="dashboard_url"),
     url(r'^logout/$', logout, {'next_page': '/'})
-    ]
+    ] 
