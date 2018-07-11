@@ -1,23 +1,15 @@
-"""user_login_actvity_demo URL Configuration
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
-
-from usersAuth.views import ObtainJWTView
+from django.contrib.auth.views import logout
+from .views import ( RegisterView, DashboardView,
+                    LoginView, PhoneVerificationView,
+                    IndexView)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('login/', view=ObtainJWTView.as_view(), name='login'),
-]
+    url(r'^$', IndexView.as_view(), name='index_page'),
+    url(r'^register/$', RegisterView.as_view(), name="register_url"),
+    url(r'^login/', LoginView.as_view(), name="login_url"),
+    url(r'^verify/$', PhoneVerificationView, name="phone_verification_url"),
+    url(r'^dashboard/$', DashboardView.as_view(), name="dashboard_url"),
+    url(r'^logout/$', logout, {'next_page': '/'})
+    ]
